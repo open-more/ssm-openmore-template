@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.openmore.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="org.openmore.entity.User">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="auth_key" jdbcType="VARCHAR" property="authKey" />
+    <result column="password_hash" jdbcType="VARCHAR" property="passwordHash" />
+    <result column="password_reset_token" jdbcType="VARCHAR" property="passwordResetToken" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="status" jdbcType="SMALLINT" property="status" />
+    <result column="created_at" jdbcType="INTEGER" property="createdAt" />
+    <result column="updated_at" jdbcType="INTEGER" property="updatedAt" />
+  </resultMap>
+
+  <select id="getUserById" parameterType="long" resultType="org.openmore.entity.User">
+    SELECT  * FROM user
+    WHERE id = #{uid}
+  </select>
+</mapper>
