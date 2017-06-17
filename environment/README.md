@@ -7,10 +7,10 @@
  ```
 环境初始化时可以指定env, test，prod，分别表示，开发环境，测试环境和生产环境
  
-* local.properties：本地配置，在部署时覆盖resource/properties目录下local.properties文件
+* env.properties：本地环境配置，在部署时覆盖resource/properties目录下env.properties文件
 * jdbc.properties：jdbc数据库配置，在部署时覆盖resource/properties目录下jdbc.properties文件
 
 ### 我们强烈建议你在配置环境时按照如下规则：
-* 和环境无关的通用配置放到resource/properties/main.properties里
-* 和环境相关的配置放到本目录下对应环境的local.properties里
+* 和环境无关的通用配置放到resource/properties/common.properties里
+* 和环境相关的配置放到本目录下对应环境的env.properties里
 * 如果有自己定义的配置文件，也按照上述规则操作
