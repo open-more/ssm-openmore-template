@@ -1,6 +1,6 @@
 package org.openmore.service;
 
-import org.openmore.dto.UserDto;
+import org.openmore.dto.api.UserDto;
 import org.openmore.entity.User;
 
 /**
@@ -13,6 +13,14 @@ public interface UserService {
      * @return 返回User entity
      */
     User getById(long uid);
+
+    UserDto[] searchUser(Long id, String username, String email);
+
+    void update(Long id, User user);
+
+    void create(User user);
+
+    void deleteById(Long id);
 
     UserDto getUserProfile(long uid);
 }
