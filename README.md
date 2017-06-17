@@ -8,7 +8,7 @@
 * **Springmvc4.2**
 * **Mybatis3.3.0**
 * **Shiro**
-* **c3p0连接池**
+* **c3p0**
 * **slf4j**
 * **spring-fox**
 * **asccidoctor**
@@ -26,7 +26,7 @@
 
 ## 使用
 ``` shell
-# git clone https://github.com/ichenkaihua/ssm-openmore-template.git
+# git clone https://github.com/open-more/ssm-openmore-template.git
 ```
 
 ## 快速开始
