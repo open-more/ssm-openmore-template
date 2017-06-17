@@ -8,9 +8,9 @@ import org.openmore.entity.User;
  */
 public interface UserService {
     /**
-     * 返回用户
-     * @param uid
-     * @return
+     * 根据uid获得用户entity
+     * @param uid 用户id
+     * @return 返回User entity
      */
     User getById(long uid);
 

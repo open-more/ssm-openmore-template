@@ -18,6 +18,14 @@ task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
 }
 
+// 初始化环境
+task initEnv (type: Copy) {
+    println('start initial environment')
+    print "拷贝：" + 'environment/' + project["env"] + '下的文件到src/main/resources/properties/'
+    from 'environment/' + project["env"]
+    into{'src/main/resources/properties/'}
+    println('  DONE')
+}
 
 configurations {
     mybatisGenerator
@@ -65,43 +73,33 @@ ext {
         println '没有配置数据环境，默认使用 开发环境'
         env = "dev"
     }
-    println "使用数据库环境为:${project['env']}"
 
     asciiDocOutputDir = file("${projectDir}/src/docs/asciidoc")
-    println asciiDocOutputDir.absolutePath
     swaggerOutputDir = file("${projectDir}/src/docs/swagger")
-    println swaggerOutputDir.absolutePath
-
 }
 
 def getDbProperties = {
     def properties = new Properties()
-    def dbPropertiesPath = sourceSets.main.resources.srcDirs[1].path;
-    file("$dbPropertiesPath/jdbc-mysql.properties").withInputStream { inputStream ->
-        properties.load(inputStream)
+    def dbPropertiesPath = sourceSets.main.resources.srcDirs[0].path
+    if(file("$dbPropertiesPath/properties/jdbc.properties").exists()){
+        file("$dbPropertiesPath/properties/jdbc.properties").withInputStream { inputStream ->
+            properties.load(inputStream)
+        }
+    }else{
+        println('## 警告：src/main/resources/properties/jdbc.properties没有找到')
     }
-    properties;
+    properties
 }
-
 
 war{
     archiveName="${baseName}-${project.version}.${extension}"
 }
 
-
-
-
+// 配置资源目录
 sourceSets {
     main {
         resources {
             srcDir("src/main/resources")
-
-            if (project['env'] == 'dev') {
-                srcDir("src/main/resources-dev")
-            } else if (project['env'] == 'prod') {
-                srcDir('src/main/resources-prod')
-            }
-
         }
     }
 }
@@ -138,8 +136,6 @@ asciidoctor {
             generated: asciiDocOutputDir
     ]
 }
-
-
 
 flyway {
     def prop = getDbProperties()
@@ -262,9 +258,6 @@ dependencies {
 }
 
 
-
-
-
 task mybatisGenerate  {
     doLast {
         def prop = getDbProperties()
@@ -303,6 +296,10 @@ task mybatisGenerate  {
     }
 }
 
+
+//tasks.findByName('appStart'){
+//    println '++++++++ app last +++++++++'
+//}
 
 
 

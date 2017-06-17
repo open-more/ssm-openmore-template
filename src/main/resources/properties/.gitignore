@@ -1,0 +1,3 @@
+# 所有属性文件都忽略,common.properties除外
+*.properties
+!common.properties

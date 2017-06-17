@@ -24,7 +24,6 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 /**
  * Created by michael on 2017/6/16.
  */
-
 @RestController
 @RequestMapping(value = "/user", produces = {APPLICATION_JSON_UTF8_VALUE})
 @Api(value = "/user", tags = "UserApi", description = "用户信息接口")

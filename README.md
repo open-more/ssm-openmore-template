@@ -26,29 +26,51 @@
 
 ## 使用
 ``` shell
-# git clone https://github.com/ichenkaihua/ssm-easy-template.git
+# git clone https://github.com/ichenkaihua/ssm-openmore-template.git
 ```
 
 ## 快速开始
-新建或者配置一个mysql数据库，根据数据库信息修改`src/main/resources-dev/jdbc-mysql.properties`文件。
+配置mysql数据库，修改`environment/dev/jdbc.properties`文件。
+```
+jdbc.driverClassName=com.mysql.cj.jdbc.Driver
+jdbc.url=jdbc:mysql://{YOUR_DB_URL}/{DB_NAME}?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8
+jdbc.username={USER_NAME}
+jdbc.password={PASSWORD}
+```
 然后进入命令行:
 
+### 进入项目目录
 ```shell
-# 进入项目目录
 # cd ssm-openmore-template/
+```
+### 初始化环境为开发环境
+```shell
+# ./gradlew initEnv -Penv=dev
+start initial environment
+拷贝：environment/dev下的文件到src/main/resources/properties/  DONE
+:initEnv UP-TO-DATE
+BUILD SUCCESSFUL
+```
 
-# 初始化数据库,将db/migration目录下sql迁移到本地数据库
+### 初始化数据库,将db/migration目录下sql迁移到本地数据库
+```shell
 # ./gradlew flywayMigrate
+```
 
-# jetty启动项目
+### jetty启动项目
+```shell
 # ./gradlew  appStart
+```
 
-# 获取所有用户 
-# curl  http://localhost:8080/users
+### 获取所有用户
+```shell
+# curl  http://localhost:8080/user
+```
 
-# 其他操作...
+### 其他操作...
 
-# 关闭jetty
+### 关闭jetty
+```shell
 # ./gradlew appStop
 ```
 
@@ -56,19 +78,18 @@
 项目启动后，打开`http://localhost:8080/swagger-ui.html`即可查看api文档
 
 ``` shell
-# 生成html和pdf文档
 # gradle asciidoctor
 ```
 
 ## 部署
 集成了`gretty`插件,更多使用方法前往[gretty官网]
+### jetty启动项目，[http://locaohost:8080/](http://locaohost:8080/)
 ```shell
-# jetty启动项目，http://locaohost:8080/
 # ./gradlew  jettyStart
-
-#关闭jetty
+```
+###关闭jetty
+```shell
 # ./gradlew jettyStop
-
 ```
 
 
