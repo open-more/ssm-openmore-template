@@ -8,7 +8,7 @@
 * **Springmvc4.2**
 * **Mybatis3.3.0**
 * **Shiro**
-* **c3p0连接池**
+* **c3p0**
 * **slf4j**
 * **spring-fox**
 * **asccidoctor**
@@ -26,7 +26,7 @@
 
 ## 使用
 ``` shell
-# git clone https://github.com/ichenkaihua/ssm-openmore-template.git
+# git clone https://github.com/open-more/ssm-openmore-template.git
 ```
 
 ## 快速开始
@@ -74,12 +74,8 @@ BUILD SUCCESSFUL
 # ./gradlew appStop
 ```
 
-## 生成restAPI文档
-项目启动后，打开`http://localhost:8080/swagger-ui.html`即可查看api文档
-
-``` shell
-# gradle asciidoctor
-```
+## 查看在线restAPI文档
+项目启动后，打开[http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)即可查看api文档
 
 ## 部署
 集成了`gretty`插件,更多使用方法前往[gretty官网]
