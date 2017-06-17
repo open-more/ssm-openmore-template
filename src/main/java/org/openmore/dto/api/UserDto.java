@@ -1,4 +1,4 @@
-package org.openmore.dto;
+package org.openmore.dto.api;
 
 /**
  * Created by michael on 2017/6/16.
