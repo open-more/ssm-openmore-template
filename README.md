@@ -1,7 +1,18 @@
-# ssm-openmore-template
+Openmore 基于SSM（Spring+SpringMVC+Mybatis）开源REST API服务
+===============================
+关于Openmore
+------------
+<p align="center">
+    <a href="https://github.com/open-more" target="_blank">
+        <img src="https://avatars0.githubusercontent.com/u/27731838?v=3&s=460" width="120" alt="Open More" />
+    </a>
+</p>
+Openmore团队是目前北京的一家创业公司内里的几个主程自发组织的开源团队, 团队目标是将创业过程中技术团队遇到的技术经验进行开源分享, 本着更开放,更高效的原则帮助中国的移动开发者填坑,减少开发成本,同时吸收大家的意见与建议。
+
+
 
 ## 介绍
-**Ssm-openmore-Template** 是基于SSM的J2EE项目快速开发脚手架，集成了最常用的框架,适用于`Restfull` 架构风格`Web Service`接口开发。
+**ssm-openmore-template** 是基于SSM的J2EE项目快速开发脚手架，集成了最常用的框架,适用于`Restfull` 架构风格`Web Service`接口开发。
 
 ## 主要框架
 * **Spring4.2**
