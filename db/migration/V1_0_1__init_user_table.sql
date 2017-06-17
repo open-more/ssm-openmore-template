@@ -23,10 +23,10 @@ CREATE TABLE `user` (
 SET FOREIGN_KEY_CHECKS = 1;
 
 INSERT INTO `user` VALUES (1, 'testuser1', 'auth_key1', 'password_hash1', 'password_reset_token1', 'michael@openmore.org', 10, 0, 0);
-INSERT INTO `user` VALUES (2, 'testuser2', 'auth_key2', 'password_hash2', 'password_reset_token2', 'michael@openmore.org', 10, 0, 0);
-INSERT INTO `user` VALUES (3, 'testuser3', 'auth_key3', 'password_hash3', 'password_reset_token3', 'michael@openmore.org', 10, 0, 0);
-INSERT INTO `user` VALUES (4, 'testuser4', 'auth_key4', 'password_hash4', 'password_reset_token4', 'michael@openmore.org', 10, 0, 0);
-INSERT INTO `user` VALUES (5, 'testuser5', 'auth_key5', 'password_hash5', 'password_reset_token5', 'michael@openmore.org', 10, 0, 0);
-INSERT INTO `user` VALUES (6, 'testuser6', 'auth_key6', 'password_hash6', 'password_reset_token6', 'michael@openmore.org', 10, 0, 0);
+INSERT INTO `user` VALUES (2, 'testuser2', 'auth_key2', 'password_hash2', 'password_reset_token2', 'aa@openmore.org', 10, 0, 0);
+INSERT INTO `user` VALUES (3, 'testuser3', 'auth_key3', 'password_hash3', 'password_reset_token3', 'bb@openmore.org', 10, 0, 0);
+INSERT INTO `user` VALUES (4, 'testuser4', 'auth_key4', 'password_hash4', 'password_reset_token4', 'cc@openmore.org', 10, 0, 0);
+INSERT INTO `user` VALUES (5, 'testuser5', 'auth_key5', 'password_hash5', 'password_reset_token5', 'dd@openmore.org', 10, 0, 0);
+INSERT INTO `user` VALUES (6, 'testuser6', 'auth_key6', 'password_hash6', 'password_reset_token6', 'ee@openmore.org', 10, 0, 0);
 
 

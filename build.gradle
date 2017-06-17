@@ -18,14 +18,6 @@ task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
 }
 
-// 初始化环境
-task initEnv (type: Copy) {
-    println('start initial environment')
-    print "拷贝：" + 'environment/' + project["env"] + '下的文件到src/main/resources/properties/'
-    from 'environment/' + project["env"]
-    into{'src/main/resources/properties/'}
-    println('  DONE')
-}
 
 configurations {
     mybatisGenerator
@@ -257,6 +249,18 @@ dependencies {
 
 }
 
+// 初始化环境
+task initEnv () {
+    doLast {
+        println('start initial environment')
+        print "拷贝：" + 'environment/' + project["env"] + '下的文件到src/main/resources/properties/'
+        copy {
+            from 'environment/' + project["env"]
+            into { 'src/main/resources/properties/' }
+        }
+        println('  DONE')
+    }
+}
 
 task mybatisGenerate  {
     doLast {
@@ -295,11 +299,6 @@ task mybatisGenerate  {
         }
     }
 }
-
-
-//tasks.findByName('appStart'){
-//    println '++++++++ app last +++++++++'
-//}
 
 
 
