@@ -65,7 +65,7 @@ public class SecurityInterceptor implements HandlerInterceptor {
             secret = "hahahaha";
         }
 
-        String unsignString = secret + nonce + request.getMethod() + request.getRequestURI() + jsonBody + time;
+        String unsignString = secret + nonce + request.getMethod().toUpperCase() + request.getRequestURI() + jsonBody + time;
         String mysign = "";
         try {
             logger.debug("unsignString = {}", unsignString);

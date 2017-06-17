@@ -43,6 +43,30 @@ Openmore团队是目前北京的一家创业公司内里的几个主程自发组
 * 关键数据可加密，Header中encrypt=1时，接口数据进行AES128加密，隐藏明文发送数据
 * Header里带有DEVICE_TOKEN，通过token来控制客户端访问，比如：互踢，拉黑机制。
 
+Http Header请求参数如下：
+* sign：签名（签名算法见下面）
+* Content-Type：application/json
+* timestamp：时间戳（秒）
+* nonce：6位随机数
+* app_key：App key
+* encrypt：1表示内容加密，参数不存在或为其它值，表示内容不加密
+
+## 签名算法
+app_key表示分配给客户端的key，社个Key对应一个secret_key，签名时使用secret_key进行加密
+```
+sign = md5(secret_key + nonce + 请求方式（GET/PUT/POST/DELETE，必须大写）+ 请求接口URI（除域名后的URL） + body + timestamp)
+```
+####例如：
+```
+GET http://api.openmore.org/user/123
+secret_key = a92664b406ed5b18dd04cd59c6778519
+nonce = 1A39CJ
+timestamp = 1497723214
+body = 空
+拼接字符串为：a92664b406ed5b18dd04cd59c67785191A39CJGET/user/1231497723214
+md5("a92664b406ed5b18dd04cd59c67785191A39CJGET/user/1231497723214") = 4E22D478672492EE8914E2314FE575AF 
+```
+
 ## 快速开始
 配置mysql数据库，修改`environment/dev/jdbc.properties`文件。
 ```
