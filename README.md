@@ -74,12 +74,8 @@ BUILD SUCCESSFUL
 # ./gradlew appStop
 ```
 
-## 生成restAPI文档
-项目启动后，打开`http://localhost:8080/swagger-ui.html`即可查看api文档
-
-``` shell
-# gradle asciidoctor
-```
+## 查看在线restAPI文档
+项目启动后，打开[http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)即可查看api文档
 
 ## 部署
 集成了`gretty`插件,更多使用方法前往[gretty官网]
