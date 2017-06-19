@@ -1,18 +1,33 @@
 package org.openmore.dto.api;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * Created by michael on 2017/6/16.
  */
+
+@ApiModel("用户显示模型")
 public class UserDto{
+    @ApiModelProperty(value="用户id")
     private int user_id;
+    @ApiModelProperty(value="用户名")
     private String username;
+    @ApiModelProperty(value="用户授权码")
     private String authKey;
+    @ApiModelProperty(value="用户密码")
     private String passwordHash;
+    @ApiModelProperty(value="用户重置密码token")
     private String passworkResetToken;
+    @ApiModelProperty(value="邮件")
     private String email;
+    @ApiModelProperty(value="状态")
     private int status;
+    @ApiModelProperty(value="状态名")
     private String statusName;
+    @ApiModelProperty(value="创建时间")
     private String createTime;
+    @ApiModelProperty(value="更新时间")
     private String updateTime;
 
     public int getUser_id() {
