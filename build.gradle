@@ -220,6 +220,11 @@ dependencies {
     compile 'io.springfox:springfox-staticdocs:2.6.1'
     compile 'io.github.robwin:assertj-swagger:0.5.0'
 
+    //freeMaker
+    compile group: 'org.freemarker', name: 'freemarker', version:'2.3.23'
+    //Gson解析
+    compile 'com.google.code.gson:gson:2.6.2'
+
     //已下这些依赖有重复
     compile 'com.github.fge:jackson-coreutils:1.8'
     compile 'commons-codec:commons-codec:1.9'
