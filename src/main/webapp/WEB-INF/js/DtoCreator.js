@@ -2,33 +2,40 @@
  * Created by LZ on 2017/6/20.
  */
 
-//生成表单
-function createAction(flag){
-    //var demo = document.getElementById('createrForm');
-    var createType = document.getElementById('createType');
-    getList();
-    var action="/dto/dtoCreaterDo";//生成文件内容
-    //var action="/dto/dtoCreaterDoFile";//生成文件内容并生成文件
-    var params=new Object();
-    params.className=document.getElementById("className").value;
-    params.className_zn=document.getElementById("className_zn").value;
-    params.controller_desc=document.getElementById("controller_desc").value;
-    params.attrs=JSON.stringify(getList());
-    //params.attrs=getList();
-    if(flag==1){
+//显示代码
+function showCode(flag){
+    var action = "/dto/source-viewer";
+    var params = new Object();
+    params.packageName = document.getElementById('packageName').value;
+    params.className = document.getElementById("className").value;
+    params.className_zn = document.getElementById("className_zn").value;
+    params.controller_desc = document.getElementById("controller_desc").value;
+    params.attrs = JSON.stringify(getList());
+    if(flag == 1){
         params.t="dto"
-    }else if(flag==2){
+    }else if(flag == 2){
         params.t="service"
-    }else if(flag==3){
+    }else if(flag == 3){
         params.t="serviceImpl"
-    }else if(flag==4){
-        params.t="controller"
+    }else if(flag == 4){
+        params.t = "controller"
     }else{
         action="";
     }
-    if(action!=""){
-        por(params,action);
+    if(action != ""){
+        por(params, action);
     }
+}
+
+//生成代码操作
+function createAction(){
+    var params = new Object();
+    params.packageName = document.getElementById('packageName').value;
+    params.className = document.getElementById("className").value;
+    params.className_zn = document.getElementById("className_zn").value;
+    params.controller_desc = document.getElementById("controller_desc").value;
+    params.attrs = JSON.stringify(getList());
+    createSource(params);
 }
 
 //添加属性
@@ -46,46 +53,47 @@ function addProperties(){
     newchild.innerHTML = new_ht_str;
     document.getElementById("attrs").appendChild(newchild);
     document.getElementById("addButton").setAttribute("data-number",parseInt(ab)+1);
-    /*
-    //添加行
-    var newTR = tb.insertRow(tb.rows.length);
-    //添加列
-    var newNameTD1=newTR.insertCell(0);
-    newNameTD1.innerHTML="name";
-    newNameTD1.innerHTML = "<input type='text' name='attrs["+ab+"].name'";
-    var newNameTD2=newTR.insertCell(1);
-    newNameTD2.innerHTML="type";
-    newNameTD2.innerHTML = "<input type='text' name='attrs["+ab+"].value'";
-    var newNameTD3=newTR.insertCell(2);
-    newNameTD3.innerHTML="desc";
-    newNameTD3.innerHTML = "<input type='text' name='attrs["+ab+"].desc'";
-    document.getElementById("addButton").setAttribute("data-number",ab+1);*/
 }
 
 /**获取属性集合*/
  function getList(){
     //alert("getList");
-    var attr=new Array();
+    var attr = new Array();
     var inputs=$("input[id=attr]")
     //alert(inputs.length);
     var j=0;
-    for(var i=0; i<inputs.length;i=i+3){
-        var param=new Object();
-        param.name=inputs[i].value;
-        param.value=inputs[i+1].value;
-        param.desc=inputs[i+2].value;
-        attr[j]=param;
+    for(var i = 0; i < inputs.length;i=i+3){
+        var param = new Object();
+        param.name = inputs[i].value;
+        param.type = inputs[i+1].value;
+        param.desc = inputs[i+2].value;
+        attr[j] = param;
         j++
     }
     return attr;
-    /*
-    var str="";
-    $.each(attr,function (name,value,desc) {
-        str=+name+value+desc;
-    })
-   alert(str);*/
 }
 
+function createSource(params) {
+    $.ajax({
+        type: "POST",
+        cache: false,
+        //traditional: true,
+        url: "/dto/source-generator",
+        dataType: "json",
+        data: params,
+        success:function (data) {
+            showOverlay(data);
+        },
+        failed:function (data) {
+            alert(data);
+            showOverlay(data);
+        },
+        error:function(data){
+            alert(data.message);
+            showOverlay(data);
+        }
+    });
+}
 
 function por(obj, action) {
     $.ajax({

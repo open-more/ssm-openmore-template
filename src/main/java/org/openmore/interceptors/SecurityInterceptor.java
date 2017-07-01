@@ -37,6 +37,10 @@ public class SecurityInterceptor implements HandlerInterceptor {
         BodyReadHttpServletRequestWrapper wrapper = new BodyReadHttpServletRequestWrapper(request);
         String jsonBody = wrapper.getJsonPararms();
 
+        if(StringUtils.isEmpty(encrypt) || encrypt == null){
+            return true;
+        }
+
         logger.debug("sign = {} time = {} nonce = {} key = {} jsonBody = {} encrypt = {}", sign, time, nonce, key, jsonBody, encrypt);
 
         if(StringUtils.isEmpty(sign) || StringUtils.isEmpty(time)

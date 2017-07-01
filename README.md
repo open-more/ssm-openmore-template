@@ -105,7 +105,12 @@ BUILD SUCCESSFUL
 # curl  http://localhost:8080/user
 ```
 
-### 其他操作...
+
+### 通过MybatisGenerator根据DB表结构，生成Mapper文件和对应的entity
+```java
+# ./gradlew mybatisGenerate
+```
+可以看到在dao包和entity包下出了自动生成的代码
 
 ### 关闭jetty
 ```shell
@@ -114,6 +119,14 @@ BUILD SUCCESSFUL
 
 ## 查看在线restAPI文档
 项目启动后，打开[http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)即可查看api文档
+
+
+### 通过代码生成器生成DTO（POJO），Servcie， ServiceImpl，Controller及对应的文档
+ * 浏览器打开[http://localhost:8080/dto/home](http://localhost:8080/dto/home)，进入Dto生成器界面
+ * 输入包名，DTO的英文名，与DB Entity对应及DTO的中文和描述
+ * 输入需要创建DTO的属性，type为Java的基本数据类型
+ * 分别显示Show*按钮，查看生成的代码
+ * 点击Create All Source，将代码自动生成在包名目录下
 
 ## 部署
 集成了`gretty`插件,更多使用方法前往[gretty官网]
