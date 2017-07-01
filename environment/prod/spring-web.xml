@@ -31,7 +31,7 @@
     </bean>
 
     <!-- 4.扫描web相关的bean -->
-    <context:component-scan base-package="org.openmore.controller,org.openmore.sourcegenerator.controller" >
+    <context:component-scan base-package="org.openmore.controller" >
         <context:include-filter type="annotation"
                                 expression="org.springframework.web.bind.annotation.RestController" />
     </context:component-scan>
@@ -39,8 +39,8 @@
     <mvc:view-controller path="/" view-name="forward:/index" />
 
 
-    <!-- 5.生成文档 -->
-    <bean class="org.openmore.document.MySwaggerConfig"/>
+    <!-- 5.生产环境不需要生成文档 -->
+    <!--<bean class="org.openmore.document.MySwaggerConfig"/>-->
 
     <!-- 6.拦截器 -->
     <mvc:interceptors>
@@ -56,7 +56,7 @@
     <mvc:resources mapping="/css/**" location="/WEB-INF/css/" />
     <mvc:resources mapping="/js/**" location="/WEB-INF/js/" />
     <mvc:resources mapping="/fonts/**" location="/WEB-INF/fonts/" />
-    <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>
+    <!--<mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>-->
     <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
 
     <!--<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->

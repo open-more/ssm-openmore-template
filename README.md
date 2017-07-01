@@ -1,7 +1,16 @@
-# ssm-openmore-template
+Openmore 基于SSM（Spring+SpringMVC+Mybatis）开源REST API服务
+===============================
+关于Openmore
+------------
+<p align="center">
+    <a href="https://github.com/open-more" target="_blank">
+        <img src="https://avatars0.githubusercontent.com/u/27731838?v=3&s=460" width="120" alt="Open More" />
+    </a>
+</p>
+Openmore团队是目前北京的一家创业公司内里的几个主程自发组织的开源团队, 团队目标是将创业过程中技术团队遇到的技术经验进行开源分享, 本着更开放,更高效的原则帮助中国的移动开发者填坑,减少开发成本,同时吸收大家的意见与建议。
 
 ## 介绍
-**Ssm-openmore-Template** 是基于SSM的J2EE项目快速开发脚手架，集成了最常用的框架,适用于`Restfull` 架构风格`Web Service`接口开发。
+**ssm-openmore-template** 是基于SSM的J2EE项目快速开发脚手架，集成了最常用的框架,适用于`Restfull` 架构风格`Web Service`接口开发。
 
 ## 主要框架
 * **Spring4.2**
@@ -19,7 +28,6 @@
 * **Mybatis通用Mapper3** 
 
 ## 开发工具
-### IDE
 `Intellij Idea`
 ### 依赖管理工具
 `Gradle`
@@ -27,6 +35,36 @@
 ## 使用
 ``` shell
 # git clone https://github.com/open-more/ssm-openmore-template.git
+```
+
+## 接口安全（拦截器实现）
+* 防止篡改，所有请求接口都带有sign签名，sign = md5(app_secret + nonce + method + uri + body(json) + timestamp)
+* 防止重放攻击，Header里带有时间戳，超过时间差容忍范围(默认60秒)，拒绝访问
+* 关键数据可加密，Header中encrypt=1时，接口数据进行AES128加密，隐藏明文发送数据
+* Header里带有DEVICE_TOKEN，通过token来控制客户端访问，比如：互踢，拉黑机制。
+
+Http Header请求参数如下：
+* sign：签名（签名算法见下面）
+* Content-Type：application/json
+* timestamp：时间戳（秒）
+* nonce：6位随机数
+* app_key：App key
+* encrypt：1表示内容加密，参数不存在或为其它值，表示内容不加密
+
+## 签名算法
+app_key表示分配给客户端的key，社个Key对应一个secret_key，签名时使用secret_key进行加密
+```
+sign = md5(secret_key + nonce + 请求方式（GET/PUT/POST/DELETE，必须大写）+ 请求接口URI（除域名后的URL） + body + timestamp)
+```
+####例如：
+```
+GET http://api.openmore.org/user/123
+secret_key = a92664b406ed5b18dd04cd59c6778519
+nonce = 1A39CJ
+timestamp = 1497723214
+body = 空
+拼接字符串为：a92664b406ed5b18dd04cd59c67785191A39CJGET/user/1231497723214
+md5("a92664b406ed5b18dd04cd59c67785191A39CJGET/user/1231497723214") = 4E22D478672492EE8914E2314FE575AF 
 ```
 
 ## 快速开始
@@ -67,7 +105,12 @@ BUILD SUCCESSFUL
 # curl  http://localhost:8080/user
 ```
 
-### 其他操作...
+
+### 通过MybatisGenerator根据DB表结构，生成Mapper文件和对应的entity
+```java
+# ./gradlew mybatisGenerate
+```
+可以看到在dao包和entity包下出了自动生成的代码
 
 ### 关闭jetty
 ```shell
@@ -76,6 +119,14 @@ BUILD SUCCESSFUL
 
 ## 查看在线restAPI文档
 项目启动后，打开[http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)即可查看api文档
+
+
+### 通过代码生成器生成DTO（POJO），Servcie， ServiceImpl，Controller及对应的文档
+ * 浏览器打开[http://localhost:8080/dto/home](http://localhost:8080/dto/home)，进入Dto生成器界面
+ * 输入包名，DTO的英文名，与DB Entity对应及DTO的中文和描述
+ * 输入需要创建DTO的属性，type为Java的基本数据类型
+ * 分别显示Show*按钮，查看生成的代码
+ * 点击Create All Source，将代码自动生成在包名目录下
 
 ## 部署
 集成了`gretty`插件,更多使用方法前往[gretty官网]
