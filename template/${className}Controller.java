@@ -44,7 +44,7 @@ public class ${className!""}Controller extends BaseController {
         if(${className?uncap_first} == null){
             throw new InvalidateParamsException("请求失败：找不到id=" + id + "的${className_zn!""}");
         }
-        return new ResponseEntity(user, HttpStatus.OK);
+        return new ResponseEntity(${className?uncap_first}, HttpStatus.OK);
     }
 
     @ApiOperation(value = "检索${className_zn!""}信息，返回结果列表", response = ${className}.class, responseContainer = "List")
@@ -55,7 +55,7 @@ public class ${className!""}Controller extends BaseController {
         logger.debug(">> search${className}");
         List<${className}Dto> searchResult;
         try {
-            searchResult = ${className?uncap_first}Service.search${className}(${className?uncap_first});
+            searchResult = ${className?uncap_first}Service.search${className}Dto(${className?uncap_first});
         }catch (Exception e){
             throw new InvalidateParamsException("请求失败：" + e.getMessage());
         }
@@ -66,19 +66,25 @@ public class ${className!""}Controller extends BaseController {
      @ApiResponses(value = { @ApiResponse(code = 400, message = "请求失败：更新的数据不存在", response = ErrorResponseEntity.class),
                              @ApiResponse(code = 400, message = "请求失败：数据更新失败", response = ErrorResponseEntity.class) })
      @RequestMapping(method = RequestMethod.PUT, value = "{id}")
-     public void update${className}(@RequestBody @ApiParam(value = "新${className_zn!""}信息", required = true) ${className} ${className?uncap_first})
+     public void update${className}(@PathVariable @ApiParam(value = "${className_zn!""}id", required = true) Integer id,
+                                    @RequestBody @ApiParam(value = "新${className_zn!""}信息", required = true) ${className} ${className?uncap_first})
      {
-            logger.debug(">> update${className}");
-            ${className} entity = ${className?uncap_first}Service.getEntityById(${className?uncap_first}.getId());
-            if(entity == null){
-                throw new InvalidateParamsException("请求失败：更新的数据不存在");
-            }
+         logger.debug(">> update${className}");
+         ${className} entity = ${className?uncap_first}Service.getEntityById(${className?uncap_first}.getId());
+         if(entity == null){
+             throw new InvalidateParamsException("请求失败：更新的数据不存在");
+         }
 
-            try {
-                ${className?uncap_first}Service.update(${className?uncap_first});
-            }catch (Exception e){
-                throw new InvalidateParamsException("请求失败：" + e.getMessage());
-            }
+         // 如果entity里没有带id，自动添加上
+         if(${className?uncap_first}.getId() == null){
+            ${className?uncap_first}.setId(id);
+         }
+
+         try {
+             ${className?uncap_first}Service.update(${className?uncap_first});
+         }catch (Exception e){
+             throw new InvalidateParamsException("请求失败：" + e.getMessage());
+         }
      }
 
      @ApiOperation("创建${className_zn!""}")

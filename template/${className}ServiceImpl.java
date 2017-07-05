@@ -56,12 +56,12 @@ public class ${className}ServiceImpl implements ${className}Service{
 
     /**
      * 根据指定的参数对数据进行检索
-     * @return List<UserDto>结果列表
+     * @return List<${className}Dto>结果列表
      */
     @Transactional
-    public List<${className}Dto> search${className}(${className} ${className?uncap_first}) throws IllegalAccessException, InvocationTargetException
+    public List<${className}Dto> search${className}Dto(${className} ${className?uncap_first}) throws IllegalAccessException, InvocationTargetException
     {
-        logger.debug(">> search${className}(${className} ${className?uncap_first})");
+        logger.debug(">> search${className}Dto(${className} ${className?uncap_first})");
         List<${className}> searchResult;
         if(${className?uncap_first} == null){
             searchResult = ${className?uncap_first}Dao.selectAll();
@@ -80,9 +80,27 @@ public class ${className}ServiceImpl implements ${className}Service{
     }
 
     /**
-     * 创建${className_zn}对象
-     * @param ${className?uncap_first} ${className_zn} Db Entity对象
+     * 根据指定的参数对数据进行检索
+     * @return List<${className}>结果列表
      */
+    @Transactional
+    public List<${className}> search${className}(${className} ${className?uncap_first}) throws IllegalAccessException, InvocationTargetException
+    {
+        logger.debug(">> search${className}(${className} ${className?uncap_first})");
+        List<${className}> searchResult;
+        if(${className?uncap_first} == null){
+            searchResult = ${className?uncap_first}Dao.selectAll();
+        }else{
+            searchResult = ${className?uncap_first}Dao.select(${className?uncap_first});
+        }
+        return searchResult;
+    }
+
+
+/**
+ * 创建${className_zn}对象
+ * @param ${className?uncap_first} ${className_zn} Db Entity对象
+ */
     @Transactional
     public void create(${className} ${className?uncap_first}) throws Exception
     {

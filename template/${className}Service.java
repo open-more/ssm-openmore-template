@@ -30,7 +30,13 @@ public interface ${className!""}Service {
      * 根据指定的参数对数据进行检索
      * @return List<${className}Dto>结果列表
      */
-    List<${className}Dto> search${className}(${className} ${className?uncap_first}) throws IllegalAccessException, InvocationTargetException;
+    List<${className}Dto> search${className}Dto(${className} ${className?uncap_first}) throws IllegalAccessException, InvocationTargetException;
+
+    /**
+     * 根据指定的参数对数据进行检索
+     * @return List<${className}>结果列表
+     */
+    List<${className}> search${className}(${className} ${className?uncap_first}) throws IllegalAccessException, InvocationTargetException;
 
     /**
      * 创建${className_zn}对象
