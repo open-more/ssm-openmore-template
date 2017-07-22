@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Table(name = "user")
 public class User {
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
@@ -20,7 +21,7 @@ public class User {
 
     private String email;
 
-    private Short status;
+    private Integer status;
 
     @Column(name = "created_at")
     private Integer createdAt;
@@ -115,14 +116,14 @@ public class User {
     /**
      * @return status
      */
-    public Short getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
     /**
      * @param status
      */
-    public void setStatus(Short status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

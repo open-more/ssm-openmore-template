@@ -56,7 +56,7 @@ app_key表示分配给客户端的key，社个Key对应一个secret_key，签名
 ```
 sign = md5(secret_key + nonce + 请求方式（GET/PUT/POST/DELETE，必须大写）+ 请求接口URI（除域名后的URL） + body + timestamp)
 ```
-####例如：
+### 例如：
 ```
 GET http://api.openmore.org/user/123
 secret_key = a92664b406ed5b18dd04cd59c6778519
@@ -139,5 +139,19 @@ BUILD SUCCESSFUL
 # ./gradlew jettyStop
 ```
 
+## 单元测试
+安装Junit GeneratorV2.0插件，然后在要添加单元测试的方法上右键，选择Generate->Junit Test-> V4，自动生成单元测试代码，默认代码生成在src/java/test包下，我们需要修改这个路径，系统设置Other Settings，自己指定下路径即可。
 
+## 执行测试
+```
+./gradlew test
+```
+如果测试失败的话，会在目录下生成测试报告：ssm-openmore-template/build/reports/tests/test/index.html
+
+## 常见问题
+* nested exception is org.apache.ibatis.type.TypeException: Could not set parameters for mapping
+```
+mybatis自动生成的Entity代码里没有通过@Id来注解出id主键字段来，导致在selectByPrimaryKey出错
+解决方法：在id字段前加@Id注解
+```
 
