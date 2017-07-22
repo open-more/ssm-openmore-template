@@ -56,7 +56,7 @@ app_key表示分配给客户端的key，社个Key对应一个secret_key，签名
 ```
 sign = md5(secret_key + nonce + 请求方式（GET/PUT/POST/DELETE，必须大写）+ 请求接口URI（除域名后的URL） + body + timestamp)
 ```
-####例如：
+### 例如：
 ```
 GET http://api.openmore.org/user/123
 secret_key = a92664b406ed5b18dd04cd59c6778519
