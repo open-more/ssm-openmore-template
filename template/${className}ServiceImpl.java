@@ -37,6 +37,9 @@ public class ${className}ServiceImpl implements ${className}Service{
     {
         logger.debug(">> get${className}DtoById(Integer id) id = " + id);
         ${className} entity = ${className?uncap_first}Dao.selectByPrimaryKey(id);
+        if(entity == null){
+            return null;
+        }
         ${className}Dto dto = new ${className}Dto();
         BeanUtils.copyProperties(dto, entity);
         return dto;
