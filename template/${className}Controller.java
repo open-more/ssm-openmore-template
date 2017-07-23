@@ -22,7 +22,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
  *   Created by ${author!"org.openmore"}
  *      on ${.now?string("yyyy-MM-dd")}
  */
-@Api(value = "/${className!""}", tags = "${className!""}Api", description = "${controller_desc!""}")
+@Api(value = "/${className!""}", tags = "${className!""}", description = "${controller_desc!""}")
 @RequestMapping(value = "/${className?uncap_first}", produces = {APPLICATION_JSON_UTF8_VALUE})
 @RestController
 public class ${className!""}Controller extends BaseController {

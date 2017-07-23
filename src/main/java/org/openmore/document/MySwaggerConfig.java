@@ -30,13 +30,13 @@ public class MySwaggerConfig {
                         "，加入了常用的gradle插件(gretty,flydb，mybatis generator),。")
                 .contact(contact)
 
-                .version("3.0")
+                .version("1.0")
                 .build();
     }
 
     private Predicate<String> userPaths() {
         return or(
-                regex("/user.*")
+                regex("/*.*")
         );
     }
 
@@ -47,7 +47,7 @@ public class MySwaggerConfig {
         com.fasterxml.classmate.TypeResolver typeResolver = new com.fasterxml.classmate.TypeResolver();
 
         Docket docket = new Docket(DocumentationType.SWAGGER_2)
-                .groupName("user-api")
+                .groupName("version1.0")
                 .apiInfo(apiInfo())
                 .select()
                 .paths(userPaths())

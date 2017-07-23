@@ -28,7 +28,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
  * Created by LZ on 2017/6/20.
  */
 @CrossOrigin(maxAge = 3600)
-@Api(value = "/dto", tags = "DTO半自动生成器", description = "DTO半自动生成器")
+@Api(value = "/dto", tags = "DTO", description = "DTO半自动生成器")
 @RequestMapping(value = "/dto", produces = {APPLICATION_JSON_UTF8_VALUE})
 @Controller
 public class DtoCreatorController{
@@ -44,7 +44,6 @@ public class DtoCreatorController{
     @ApiOperation(value = "DTO生成器返回生成内容", response = String.class)
     @ApiResponses(value = { @ApiResponse(code = 400, message = "请求失败：参数错误", response = ErrorResponseEntity.class) })
     @RequestMapping(method = RequestMethod.POST, value = "/source-viewer")
-    @ResponseBody
     public ResponseEntity showSourceDo(@RequestParam(required = false) String t,
                                        @RequestParam(required = false) String packageName,
                                        @RequestParam(required = false) String className,
@@ -114,7 +113,6 @@ public class DtoCreatorController{
     @ApiOperation(value = "DTO生成器并生成文件", response = String.class)
     @ApiResponses(value = { @ApiResponse(code = 400, message = "请求失败：参数错误", response = ErrorResponseEntity.class) })
     @RequestMapping(method = RequestMethod.POST, value = "/source-generator")
-    @ResponseBody
     public ResponseEntity generateSourceFile(@RequestParam(required = false) String packageName,
                                              @RequestParam(required = false) String className,
                                              @RequestParam(required = false) String className_zn,
