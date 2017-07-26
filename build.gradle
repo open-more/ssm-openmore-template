@@ -49,6 +49,7 @@ buildscript {
 allprojects {
     repositories {
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://jitpack.io' }
         jcenter()
     }
 }
@@ -221,7 +222,7 @@ dependencies {
     compile 'io.github.robwin:assertj-swagger:0.5.0'
 
     //freeMaker
-    compile group: 'org.freemarker', name: 'freemarker', version:'2.3.23'
+    compile 'com.github.lzzzzzz:code-generator:v1.04.2'
     //Gson解析
     compile 'com.google.code.gson:gson:2.6.2'
 

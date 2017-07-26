@@ -2,7 +2,8 @@ package org.openmore.service;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-import org.openmore.dto.UserDto;
+
+import org.openmore.dto.api.UserDto;
 import org.openmore.entity.User;
 
 /**

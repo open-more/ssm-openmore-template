@@ -6,19 +6,22 @@
 function showCode(flag){
     var action = "/dto/source-viewer";
     var params = new Object();
+    var  myselect=document.getElementById("environment");
+    var se_index=myselect.selectedIndex ;
+    var se_value=myselect.options[se_index].value;
     params.packageName = document.getElementById('packageName').value;
     params.className = document.getElementById("className").value;
     params.className_zn = document.getElementById("className_zn").value;
     params.controller_desc = document.getElementById("controller_desc").value;
     params.attrs = JSON.stringify(getList());
     if(flag == 1){
-        params.t="dto"
+        params.t=(se_value=="api"?"dtoApi":"dtoCommon");
     }else if(flag == 2){
         params.t="service"
     }else if(flag == 3){
-        params.t="serviceImpl"
+        params.t=(se_value=="api"?"controllerApi":"controllerCommon");
     }else if(flag == 4){
-        params.t = "controller"
+        params.t=(se_value=="api"?"allApi":"allCommon");
     }else{
         action="";
     }
@@ -65,7 +68,7 @@ function addProperties(){
     for(var i = 0; i < inputs.length;i=i+3){
         var param = new Object();
         param.name = inputs[i].value;
-        param.type = inputs[i+1].value;
+        param.value = inputs[i+1].value;
         param.desc = inputs[i+2].value;
         attr[j] = param;
         j++
@@ -100,19 +103,19 @@ function por(obj, action) {
         type: "POST",
         cache: false,
         //traditional: true,
-        dataType: "json",
         url: action,
+        dataType: "json",
         data: obj,
-        success:function (data) {
+        success: function (data) {
             //alert(data);
             showOverlay(data);
         },
-        failed:function (data) {
-            alert(data);
+        failed: function (data) {
+            //alert(data);
             showOverlay(data);
         },
-        error:   function(data){
-            alert(data.message);
+        error: function(data){
+            //alert(data.message);
             showOverlay(data);
         }
     });

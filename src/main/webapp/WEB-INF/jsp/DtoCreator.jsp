@@ -18,18 +18,20 @@
     <textarea style="border:solid; border-color: #ffffff;"> sdfsdfsdfsdfsdf</textarea>
 </div>--%>
     <div style="text-align: center;margin-top: 20px; width:40%; float: left">
-
         <div style="text-align: center;margin-top: 20px;">
             <font size="6" style="text-align: center">DTO Creator V1.0</font>
             </div>
             <div style="text-align: center;margin-top: 20px">
             <form id="createrForm" method="post">
-                <div style="display:inline">
+                <select id="environment" style="margin-bottom: 12px">
+                    <option value="api">Api</option>
+                    <option value="common">Common</option>
+                </select></br>
+                <div style="display:inline;margin-top: 15px">
                 <input type="button" value="Show DTO" onclick="showCode(1)"/>
                 <input type="button" value="Show Service" onclick="showCode(2)"/>
-                <input type="button" value="Show ServiceImpl" onclick="showCode(3)"/>
-                <input type="button" value="Show Controller" onclick="showCode(4)"/>
-                <input type="button" value="Create All Source" onclick="createAction()"/>
+                <input type="button" value="Show Controller" onclick="showCode(3)"/>
+                <input type="button" value="Create All Source" onclick="createAction(4)"/>
                 </div>
                 <table align="center" style="margin-top: 30px">
                     <tr>

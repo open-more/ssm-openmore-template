@@ -1,6 +1,7 @@
 package org.openmore.service.impl;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.openmore.dto.api.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import java.lang.reflect.InvocationTargetException;
@@ -10,7 +11,6 @@ import org.openmore.service.UserService;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.openmore.dto.UserDto;
 import org.openmore.dao.UserMapper;
 import org.openmore.entity.User;
 
